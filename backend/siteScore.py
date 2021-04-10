@@ -4,7 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 import language_check
 import datetime
-import re
 
 from textblob import TextBlob
 
@@ -32,10 +31,9 @@ def site_score(url):
     for t in text:
         if t.parent.name in allowed:
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
-    #fix author search for both functions (check attribute and then names)
-    #toolbar
-    #highlight
-    print(output)
+    #cosine similiarity, logo, submit - ezzat
+    #deploy and easy install extension, fix highlight -bill
+    #add question answer system - me
     analysisSub = TextBlob(output).subjectivity
     bias_score=(1-analysisSub)*10
 
@@ -89,5 +87,4 @@ def site_score(url):
     #print("Bias: " + str(bias_score)) 
     #print("Total Score: " +total)
     return scores
-    #enter your research topic to determine relevance of this site
 #site_score("https://www.pbs.org/crucible/tl5.html")
