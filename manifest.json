@@ -10,9 +10,14 @@
     }],
     "permissions":[
         "storage",
-        "tabs"
+        "tabs",
+        "http://localhost:5000/*"
     ],
+    
     "browser_action":{
+        "default_icon": "spade.png",
         "default_popup": "popup.html"
-    }
+    },
+    "content_security_policy": "script-src 'self' https://stackpath.bootstrapcdn.com/;  object-src 'self'"
+
 }

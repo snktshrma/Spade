@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function(req, send, res){
 function startSketch(){
     const s = (sketch) =>{
         sketch.setup = ()=>{
-            var c = sketch.createCanvas(document.body.offsetWidth, document.body.offsetHeight);
+            var c = sketch.createCanvas(window.innerWidth, window.innerHeight);
             c.position(0, 0);
             sketch.clear();
             sketch.stroke(0);
