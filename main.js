@@ -3,12 +3,16 @@ var page = {
     "strokes": []
 }
 
+var tool = "writing";
+
+var endSketch = false;
+
 chrome.runtime.onMessage.addListener(function(req, send, res){
     if(req.greeting){
+        endSketch = false;
         startSketch();
     } else {
-        let elem = document.getElementById("defaultCanvas0");
-        elem.parentNode.removeChild(elem);
+        endSketch = true;
     }
 })
 
@@ -32,6 +36,9 @@ function startSketch(){
         }
 
         sketch.draw = ()=>{
+            if(endSketch){
+                sketch.remove();
+            }
             sketch.stroke(0);
             sketch.strokeWeight(4);
             if(sketch.mouseIsPressed){
@@ -43,12 +50,6 @@ function startSketch(){
                     "pmouseY": sketch.pmouseY
                 });
                 saveData()
-            }
-        }
-
-        sketch.keyPressed = ()=>{
-            if(sketch.keyCode == 87){
-                chrome.storage.local.clear();
             }
         }
     }
