@@ -15,6 +15,7 @@ def auto_cite():
     url = request.args.get('url')
     citation = cite(url)
     return citation
+
 @app.route('/credibility')
 @cross_origin()
 def rate_credibility():
