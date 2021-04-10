@@ -44,7 +44,7 @@ function setup(){
                     line(strokes.mouseX, strokes.mouseY, strokes.pmouseX, strokes.pmouseY);
                 } else if (strokes.tool == "highlight"){
                     noErase();
-                    stroke(204, 255, 0, 10);
+                    stroke(204, 255, 0, 30);
                     strokeWeight(15);
                     line(strokes.mouseX, strokes.mouseY, strokes.pmouseX, strokes.pmouseY);
                 } else if (strokes.tool == "erase"){
@@ -71,7 +71,7 @@ function draw(){
         strokeWeight(4);
     } else if(tool == "highlight"){
         noErase();
-        stroke(204, 255, 0, 10);
+        stroke(204, 255, 0, 30);
         strokeWeight(15);
     } else if(tool == "erase"){
         stroke(0);

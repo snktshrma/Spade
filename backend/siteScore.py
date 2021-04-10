@@ -34,6 +34,7 @@ def site_score(url):
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
     #fix author search for both functions (check attribute and then names)
     #toolbar
+    #highlight
     print(output)
     analysisSub = TextBlob(output).subjectivity
     bias_score=(1-analysisSub)*10

@@ -67,9 +67,9 @@ chrome.storage.local.get(["startStop"], function(result){
         state = result.startStop;
     }
     if(state){
-        document.getElementById("start").innerHTML = "Start";
+        document.getElementById("start").innerHTML ='<i class="fa fa-play"></i>';
     } else {
-        document.getElementById("start").innerHTML = "Stop";
+        document.getElementById("start").innerHTML = '<i class="fa fa-pause"></i>';
     }
 })
 
@@ -79,9 +79,9 @@ document.getElementById("start").addEventListener("click", function(){
         chrome.storage.local.set({startStop: !state});
         state = !state;
         if(state){
-            document.getElementById("start").innerHTML = "Start";
+            document.getElementById("start").innerHTML = '<i class="fa fa-play"></i>';
         } else {
-            document.getElementById("start").innerHTML = "Stop";
+            document.getElementById("start").innerHTML = '<i class="fa fa-pause"></i>';
         }
     })
 })
@@ -115,6 +115,6 @@ document.getElementById("clear").addEventListener("click", function(){
         chrome.tabs.sendMessage(tabs[0].id, {clear: true})
         chrome.storage.local.set({startStop: true});
         state = true
-        document.getElementById("start").innerHTML = "Start";
+        document.getElementById("start").innerHTML = '<i class="fa fa-play"></i>';
     })
 })
