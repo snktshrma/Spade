@@ -27,7 +27,15 @@ document.getElementById("start").addEventListener("click", function(){
 })
 
 document.getElementById("writing").addEventListener("click", function(){
-    
+    chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {tool: "writing"});
+    })
+})
+
+document.getElementById("highlight").addEventListener("click", function(){
+    chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {tool: "highlight"});
+    })
 })
 
 document.getElementById("erase").addEventListener("click", function(){

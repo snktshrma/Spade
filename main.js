@@ -7,12 +7,18 @@ var tool = "writing";
 
 var endSketch = false;
 
+chrome.storage.local.set({startStop: true});
+
 chrome.runtime.onMessage.addListener(function(req, send, res){
-    if(req.greeting){
-        endSketch = false;
-        startSketch();
+    if(req.greeting != undefined){
+        if(req.greeting){
+            endSketch = false;
+            startSketch();
+        } else {
+            endSketch = true;
+        }
     } else {
-        endSketch = true;
+        tool = req.tool;
     }
 })
 
@@ -39,11 +45,17 @@ function startSketch(){
             if(endSketch){
                 sketch.remove();
             }
-            sketch.stroke(0);
-            sketch.strokeWeight(4);
+            if(tool == "writing"){
+                sketch.stroke(0);
+                sketch.strokeWeight(4);
+            } else if(tool == "highlight"){
+                sketch.stroke(204, 255, 0, 75);
+                sketch.strokeWeight(15);
+            }
             if(sketch.mouseIsPressed){
                 sketch.line(sketch.mouseX,sketch.mouseY,sketch.pmouseX,sketch.pmouseY);
                 page["strokes"].push({
+                    "tool": tool,
                     "mouseX": sketch.mouseX,
                     "mouseY": sketch.mouseY,
                     "pmouseX": sketch.pmouseX,
