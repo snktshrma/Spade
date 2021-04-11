@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded',async function() {
         document.getElementById("answer").value=""
     })  
     
-  
-  
     }
   })
     fetch("http://localhost:5000/credibility?url="+url).then(r => r.text()).then(result => {
