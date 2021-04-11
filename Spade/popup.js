@@ -10,15 +10,13 @@ document.addEventListener('DOMContentLoaded',async function() {
     event.preventDefault();
     if (event.key =="Enter") {
         fetch("http://localhost:5000/answer?url="+url+"&question="+document.getElementById("answer").value).then(r => r.text()).then(result => {
-        chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-            chrome.tabs.sendMessage(tabs[0].id, {answer: result});
-        })
-        document.getElementById("answer").value=""
-    })  
-    
+            document.getElementById("foundAnswer").innerHTML=result
+            document.getElementById("answer").value=""
+        })  
     }
   })
     fetch("http://localhost:5000/credibility?url="+url).then(r => r.text()).then(result => {
+
       result=JSON.parse(result)
  
       document.getElementById("answer").style.display='block'
