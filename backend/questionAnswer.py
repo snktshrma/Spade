@@ -20,20 +20,9 @@ def getAnswer(question,url):
     text = soup.find_all(text=True)
     output = ''
 
-    allowed=[
-        "p",
-        "span",
-        "li",
-        #"h1",
-        #"h2",
-        #"h3",
-        #"h4",
-        #"h5",
-        "div",
-        "a"
-    ]
     for t in text:
-        if t.parent.name in allowed:
+        if t.parent.name =="p":
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
-    score,answer=questionAnswer(question,output)
+    print(output)
+    score,answer=questionAnswer(output,question)
     return answer

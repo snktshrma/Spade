@@ -19,7 +19,7 @@
     ],
     
     "browser_action":{
-        "default_icon": "spade.png",
+        "default_icon": "untitled.png",
         "default_popup": "popup.html"
     },
     "content_security_policy": "script-src 'self' https://stackpath.bootstrapcdn.com/;  object-src 'self'"
