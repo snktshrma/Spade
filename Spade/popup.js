@@ -1,7 +1,6 @@
-
+var text=""
 document.addEventListener('DOMContentLoaded',async function() {
   document.querySelector("#copy").addEventListener("click", copy);
-
 
   chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let url = tabs[0].url;
@@ -9,6 +8,7 @@ document.addEventListener('DOMContentLoaded',async function() {
 
     fetch("http://localhost:5000/credibility?url="+url).then(r => r.text()).then(result => {
       result=JSON.parse(result)
+      text=result["text"]
       var score = result["total"]
       score*=10
       score=Math.round(score)
