@@ -1,5 +1,6 @@
 var text=""
-document.addEventListener('DOMContentLoaded',async function() {
+document.addEventListener('DOMContentLoaded', function() {
+console.log("hi")
     document.querySelector("#copy").addEventListener("click", copy);
 
     // use `url` here inside the callback because it's asynchronous!
