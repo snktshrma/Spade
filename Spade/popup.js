@@ -2,14 +2,12 @@ var text=""
 document.addEventListener('DOMContentLoaded',async function() {
     document.querySelector("#copy").addEventListener("click", copy);
 
-  chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-    let url = tabs[0].url;
     // use `url` here inside the callback because it's asynchronous!
     document.getElementById("answer")
     .addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.key =="Enter") {
-        fetch("https://spadebackend.herokuapp.com/answer?url="+url+"&question="+document.getElementById("answer").value).then(r => r.text()).then(result => {
+        fetch("https://spadebackend.herokuapp.com/answer?text="+text+"&question="+document.getElementById("answer").value).then(r => r.text()).then(result => {
           console.log(result)
           document.getElementById("answer").value=""
     })  
@@ -17,10 +15,12 @@ document.addEventListener('DOMContentLoaded',async function() {
   
   
     }
-  });
+
     fetch("https://spadebackend.herokuapp.com/credibility?url="+url).then(r => r.text()).then(result => {
       result=JSON.parse(result)
       text=result["text"]
+      console.log(text)
+      document.getElementById("answer").style.display='block'
       var score = result["total"]
       score*=10
       score=Math.round(score)
