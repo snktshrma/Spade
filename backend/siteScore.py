@@ -32,7 +32,7 @@ def site_score(url):
         if t.parent.name in allowed:
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
     #cosine similiarity, logo, submit - ezzat
-    #deploy and easy install extension, fix highlight -bill
+    #deploy and easy install extension -bill
     #add question answer system - me
     #scroll to answer
     analysisSub = TextBlob(output).subjectivity
@@ -80,12 +80,13 @@ def site_score(url):
     "relevance_score":relevance_score,
     "author_score":author_backing_score,
     "bias_score":bias_score,
-    "total":(url_score+mistakes_score+relevance_score+author_backing_score+bias_score)/5}
+    "total":(url_score+mistakes_score+relevance_score+author_backing_score+bias_score)/5,
+    "text":output}
     #print("URL: "+str(url_score))
     #print("Mistakes: "+str(mistakes_score))
     #print("Relevance: "+str(relevance_score))
     #print("Author: " + str(author_backing_score))
     #print("Bias: " + str(bias_score)) 
     #print("Total Score: " +total)
-    return scores
+    return scores,output
 #site_score("https://www.pbs.org/crucible/tl5.html")

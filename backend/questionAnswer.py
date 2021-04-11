@@ -9,9 +9,9 @@ def questionAnswer(context, question):
     result = question_answering(question=question, context=context)
 
     answer = result['answer']
-    score = result['score']
+    #score = result['score']
     
-    return score, answer
+    return answer
 
 def getAnswer(question,url):
     res = requests.get(url)
@@ -23,6 +23,5 @@ def getAnswer(question,url):
     for t in text:
         if t.parent.name =="p":
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
-    print(output)
     score,answer=questionAnswer(output,question)
     return answer
