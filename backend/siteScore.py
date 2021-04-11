@@ -31,7 +31,7 @@ def site_score(url):
     for t in text:
         if t.parent.name in allowed:
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
-    #cosine similiarity, logo, submit - ezzat
+    #logo, submit - ezzat
     #deploy and easy install extension -bill
     #add question answer system - me
     #scroll to answer
@@ -40,7 +40,6 @@ def site_score(url):
 
     authors = re.findall(r"[A-Z][a-z]+,?\s+(?:[A-Z][a-z]*\.?\s*)?[A-Z][a-z]+",  output)
     author_backing_score = 10 if len(authors) > 0 else 0
-
     original=find_date(url,original_date=True)
     update=find_date(url)
     relevance_score=0
@@ -80,13 +79,13 @@ def site_score(url):
     "relevance_score":relevance_score,
     "author_score":author_backing_score,
     "bias_score":bias_score,
-    "total":(url_score+mistakes_score+relevance_score+author_backing_score+bias_score)/5,
-    "text":output}
+    "total":(url_score+mistakes_score+relevance_score+author_backing_score+bias_score)/5
+    }
     #print("URL: "+str(url_score))
     #print("Mistakes: "+str(mistakes_score))
     #print("Relevance: "+str(relevance_score))
     #print("Author: " + str(author_backing_score))
     #print("Bias: " + str(bias_score)) 
     #print("Total Score: " +total)
-    return scores,output
+    return scores
 #site_score("https://www.pbs.org/crucible/tl5.html")
