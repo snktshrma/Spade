@@ -32,8 +32,9 @@ def site_score(url):
         if t.parent.name in allowed:
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
     #cosine similiarity, logo, submit - ezzat
-    #deploy and easy install extension, fix highlight -bill
+    #deploy and easy install extension -bill
     #add question answer system - me
+    #scroll to answer
     analysisSub = TextBlob(output).subjectivity
     bias_score=(1-analysisSub)*10
 
