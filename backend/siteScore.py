@@ -34,6 +34,7 @@ def site_score(url):
     #cosine similiarity, logo, submit - ezzat
     #deploy and easy install extension, fix highlight -bill
     #add question answer system - me
+    #scroll to answer
     analysisSub = TextBlob(output).subjectivity
     bias_score=(1-analysisSub)*10
 
