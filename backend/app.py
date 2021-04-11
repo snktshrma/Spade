@@ -4,7 +4,7 @@ from flask_cors import CORS,cross_origin
 
 from autoCite import cite
 from siteScore import site_score
-from questionAnswer import questionAnswer
+from questionAnswer import getAnswer
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -20,15 +20,16 @@ def auto_cite():
 @cross_origin()
 def rate_credibility():
     url = request.args.get('url')
+=
     score = site_score(url)
     return score
 
 @app.route('/answer')
 @cross_origin()
 def get_answer():
-    text = request.args.get('text')
+    url = request.args.get('url')
     question=request.args.get('question')
-    answer = questionAnswer(text,question)
+    answer = getAnswer(url,question)
     return answer
 
 

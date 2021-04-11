@@ -1,25 +1,28 @@
-var text=""
+
 document.addEventListener('DOMContentLoaded',async function() {
     document.querySelector("#copy").addEventListener("click", copy);
 
     // use `url` here inside the callback because it's asynchronous!
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+      let url = tabs[0].url;
     document.getElementById("answer")
     .addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.key =="Enter") {
-        fetch("https://spadebackend.herokuapp.com/answer?text="+text+"&question="+document.getElementById("answer").value).then(r => r.text()).then(result => {
-          console.log(result)
-          document.getElementById("answer").value=""
+        fetch("http://localhost:5000/answer?url="+url+"&question="+document.getElementById("answer").value).then(r => r.text()).then(result => {
+        chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+            chrome.tabs.sendMessage(tabs[0].id, {answer: result});
+        })
+        document.getElementById("answer").value=""
     })  
     
   
   
     }
-
-    fetch("https://spadebackend.herokuapp.com/credibility?url="+url).then(r => r.text()).then(result => {
+  })
+    fetch("http://localhost:5000/credibility?url="+url).then(r => r.text()).then(result => {
       result=JSON.parse(result)
-      text=result["text"]
-      console.log(text)
+ 
       document.getElementById("answer").style.display='block'
       var score = result["total"]
       score*=10
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded',async function() {
       elem.style.width=`${score}%`
     elem.innerHTML=`<div class="progress-value">${score}%</div>`
   }
-  fetch("https://spadebackend.herokuapp.com/cite?url="+url).then(r => r.text()).then(result => {
+  fetch("http://localhost:5000/cite?url="+url).then(r => r.text()).then(result => {
   document.getElementById("input").value = result;
 })
 })

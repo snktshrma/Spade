@@ -25,6 +25,8 @@ chrome.runtime.onMessage.addListener(function(req, send, res){
         saveData();
         clear();
         noLoop();
+    } else if (req.answer != undefined){
+        find(req.answer);
     }
 })
 

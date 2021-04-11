@@ -2,7 +2,6 @@ from transformers import pipeline
 import re
 from bs4 import BeautifulSoup
 import requests
-
 def questionAnswer(context, question):
     question_answering = pipeline("question-answering")
 
@@ -23,5 +22,5 @@ def getAnswer(question,url):
     for t in text:
         if t.parent.name =="p":
             output += '{} '.format(re.sub('[^a-zA-Z0-9-_*. ?:()!]', '', t))
-    score,answer=questionAnswer(output,question)
+    answer=questionAnswer(output,question)
     return answer
